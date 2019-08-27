@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateTomesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tomes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('pseudo');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('actif');
-            $table->rememberToken();
+            $table->string('nom');
+            $table->string('resume');
+            $table->date('date_de_sortie');
+            $table->string('chemin_image');
+            $table->unsignedBigInteger('manga_id');
+            $table->foreign('manga_id')->references('id')->on('mangas');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tomes');
     }
 }
