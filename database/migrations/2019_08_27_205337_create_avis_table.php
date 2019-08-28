@@ -18,6 +18,8 @@ class CreateAvisTable extends Migration
             $table->string('commentaire');
             $table->unsignedBigInteger('manga_id');
             $table->foreign('manga_id')->references('id')->on('mangas');
+            $table->unsignedBigInteger('anime_id');
+            $table->foreign('anime_id')->references('id')->on('animes');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

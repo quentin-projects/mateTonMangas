@@ -27,7 +27,7 @@ class AddDroitsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('droit_id');
+            $table->dropForeign('droit_id');
         });
     }
 }
